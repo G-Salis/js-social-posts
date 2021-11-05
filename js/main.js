@@ -1,5 +1,6 @@
 
 let container = document.getElementById('container');
+const btn = document.querySelector('.likes__cta');
 
 const posts = [
     {
@@ -41,7 +42,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": null
+            "image": "https://unsplash.it/300/300?image=29", //null da mettere.
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -61,8 +62,25 @@ const posts = [
 
 addPost();
 
+// document.addEventListener('click', function(){
+ 
+//     const like = document.getElementById('like-counter-1').value;
+
+//     console.log(like)
+  
+//     plus = like + 1;
+  
+//     posts.push(plus);
+  
+//   });
+
 function addPost() {
     for (let i in posts){
+
+        let date = posts[i].created;
+        date = date.split("-").reverse().join("-");
+
+
         container.innerHTML += `
 
           <div class="post">
@@ -73,7 +91,7 @@ function addPost() {
                   </div>
                   <div class="post-meta__data">
                       <div class="post-meta__author">${posts[i].author.name}</div>
-                      <div class="post-meta__time">4 mesi fa</div>
+                      <div class="post-meta__time">${date}</div>
                   </div>                    
               </div>
           </div>
@@ -90,7 +108,7 @@ function addPost() {
                       </a>
                   </div>
                   <div class="likes__counter">
-                      Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                      Piace a <b id="like-counter-1" class="js-likes-counter">${posts[i].likes}</b> persone
                   </div>
               </div> 
           </div>            
